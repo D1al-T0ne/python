@@ -9,7 +9,7 @@ source = requests.get('https://www.marketbeat.com/market-data/52-week-highs/')
 
 data = BeautifulSoup(source.text, 'html.parser')
 
-tickers = data.fina_all('div', class_='ticker-area')
+tickers = data.find_all('div', class_='ticker-area')
 
 for i in tickers:
   print(i.text)
