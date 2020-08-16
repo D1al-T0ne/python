@@ -1,0 +1,51 @@
+#! python3
+
+# A script that will scrape Hackerone Hacktivity for specified weakness
+
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as ec
+import time
+
+# Open up a headless Firefox browser and navigate to HackerOne's Hacktivity page
+options = Options()
+options.headless = True
+driver = webdriver.Firefox(options=options)
+
+driver.get("https://hackerone.com/hacktivity")
+print("[+] Opening Hacktivity site...")
+
+try:
+    element = WebDriverWait(driver, 12).until(ec.presence_of_element_located((By.ID, "spec-hacktivity-search-input")))
+except:
+    print("Did not load in time")
+    
+# Use search bar to find specified vulnerability
+element = driver.find_element_by_id("spec-hacktivity-search-input")
+element.send_keys("IDOR", Keys.ENTER)
+print("[+] Searching Hacktivity...")
+
+# Scroll to bottom of page to show all reports
+for i in range(10):
+    driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
+    time.sleep(1)
+print("[+] Gathering all reports...")
+time.sleep(5)
+
+# Fetch links
+links = driver.find_elements(By.CLASS_NAME,"daisy-link.ahref")
+
+list = []
+
+for link in links:
+    list.append(link.get_attribute("href"))
+    
+ # Only the reports are iterated over
+ reports = list[1::2]
+ print(*reports, sep = "\n")
+ print("[+] Total reports found", len(reports))
+ 
+ driver.quit()
