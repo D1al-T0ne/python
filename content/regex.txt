@@ -1,30 +1,28 @@
 
-.       - Any Character Except New Line
-\d      - Digit (0-9)
-\D      - Not a Digit (0-9)
-\w      - Word Character (a-z, A-Z, 0-9, _)
-\W      - Not a Word Character
-\s      - Whitespace (space, tab, newline)
-\S      - Not Whitespace (space, tab, newline)
+Any Character Except New Line         .
+Digit (0-9)                           \d
+Not a Digit (0-9)                     \D
+Word Character (a-z, A-Z, 0-9, _)     \w
+Not a Word Character                  \W
+Whitespace (space, tab, newline)      \s
+Not Whitespace (space, tab, newline   \S
 
-\b      - Word Boundary
-\B      - Not a Word Boundary
-^       - Beginning of a String
-$       - End of a String
+Word Boudary                          \b
+Not a Word Boundary                   \B
+Beginning of a String                 ^
+End of a String                       $
 
-[]      - Matches Characters in brackets
-[^ ]    - Matches Characters NOT in brackets
-|       - Either Or
-( )     - Group
+Matches Characters in Brackets        []
+Matches Characters NOT in brackets    [^ ]
+Either OR                             |
+Grpup                                 ()
 
 Quantifiers:
-*       - 0 or More
-+       - 1 or More
-?       - 0 or One
-{3}     - Exact Number
-{3,4}   - Range of Numbers (Minimum, Maximum)
+0 or More                             *
+1 or More                             +
+0 or One                              ?
+Exact Number                          {3}
+Range of Numbers (Min, Max)           {3,4}
 
-
-#### Sample Regexs ####
-
+Sampe regex for email:
 [a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+
